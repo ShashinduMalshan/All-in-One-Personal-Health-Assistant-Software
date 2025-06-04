@@ -1,4 +1,5 @@
 import 'package:first_01/widget/quick_Action_Widget.dart';
+import 'package:first_01/widget/recent_activities_widgets.dart';
 import 'package:first_01/widget/static_cards.dart';
 import 'package:flutter/material.dart';
 
@@ -139,82 +140,26 @@ class HomePage extends StatelessWidget {
         Row(
                mainAxisAlignment: MainAxisAlignment. center,
                children: [
-                 Container(
-                         width: 160,
-                         height: 130,
-                         padding: EdgeInsets.fromLTRB(19,12,0,0),
-                         decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(15),
-                         boxShadow: [
-                         BoxShadow(
-                            color: Colors.black.withOpacity(0.03), // Shadow color
-                            spreadRadius: 1, // How much the shadow spreads
-                            blurRadius: 8,  // How blurry the shadow is
-                            offset: Offset(0, 0), // Position of the shadow (x, y)
-                          ),
-                        ],
-                         color: Colors.white,
 
-                        ),
-                        child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                         children: [
-
-                           Container(
-
-                             width: 30,
-                             height: 30,
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(7),
-                               color: Colors.red,
-                             ),
-                             child:
-                             Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                              size: 18),
-                           ),
-                           SizedBox(height: 16,),
-                           Text("Heart Rate",
-                           style: TextStyle(
-                             fontWeight: FontWeight.w500,
-                             fontSize: 12,
-                             color: Colors.black54
-                           ),),
-                           SizedBox(height: 10,),
-                           Row(
-                             crossAxisAlignment: CrossAxisAlignment.end,
-                             children: [
-                             Text("70",
-                             style: TextStyle(
-                               fontWeight: FontWeight.w900,
-                               fontSize: 19,
-
-
-                             ),),
-                             Text(" bpm",style:
-                             TextStyle(
-                               fontWeight: FontWeight.w300,
-                               fontSize: 12,
-                               color: Colors.black54
-
-                             ),
-                             )
-                           ],)
-                         ],
-
-                       )
-               ),
+                 StaticCards(
+                   cardIcon: Icons.favorite_border,
+                   text:"Heart Rate",
+                   statusNumber: "70",
+                   measureIcon:" bpm",
+                   cardIconColor: Colors.red,
+                   progressBarColor: Colors.green,
+                   showProgress: false,),
 
                  SizedBox(width:11),
+
 
                  StaticCards(
                    cardIcon: Icons.monitor_heart,
                    text:"Steps", statusNumber: "8,489",
                    measureIcon:"",
                    cardIconColor: Colors.green,
-                   progressBarColor: Colors.green,),
+                   progressBarColor: Colors.green,
+                   showProgress: true,),
                 ]
         ),
 
@@ -230,6 +175,7 @@ class HomePage extends StatelessWidget {
                            measureIcon: " /8 glasses",
                            cardIconColor: Colors.blue,
                            progressBarColor: Colors.blue,
+                          showProgress: true
                        ),
 
                        SizedBox(width: 11,),
@@ -240,6 +186,7 @@ class HomePage extends StatelessWidget {
                            measureIcon: " hours",
                            cardIconColor: Colors.deepPurpleAccent,
                            progressBarColor: Colors.deepPurpleAccent,
+                         showProgress: true
                        ),
 
                       ]
@@ -298,7 +245,7 @@ class HomePage extends StatelessWidget {
                      ),
 
         Container(
-                margin: EdgeInsets.fromLTRB(40,20,0,16), // You can also use EdgeInsets.only(...)
+                margin: EdgeInsets.fromLTRB(40,20,0,12), // You can also use EdgeInsets.only(...)
                 child: Text(
                   "Recent Activities",
                   style: TextStyle(
@@ -308,9 +255,29 @@ class HomePage extends StatelessWidget {
                 ),
               ),
 
+        SizedBox(height: 19,),
 
+        RecentActivitiesWidgets(
+          containerColor: Color(0xAEE1E169),
+          containerIcon: Icons.search,
+          activityName: "Logged breakfast",
+          time: "10.30 AM"),
 
+        SizedBox(height: 19,),
 
+        RecentActivitiesWidgets(
+          containerColor: Color(0xC8AD6ADF),
+          containerIcon: Icons.child_care,
+          activityName: "15 min meditation",
+          time: "9:15 AM"),
+
+        SizedBox(height: 19,),
+
+        RecentActivitiesWidgets(
+          containerColor: Color(0xC04AB7E4),
+          containerIcon: Icons.water_drop_sharp,
+          activityName: "15 min meditation",
+          time: "9:15 AM"),
 
       ]
         ),

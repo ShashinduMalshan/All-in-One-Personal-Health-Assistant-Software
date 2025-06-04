@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class StaticCards extends StatelessWidget {
 
+  final bool showProgress;
   final IconData cardIcon;
   final Color cardIconColor;
   final String text;
@@ -9,7 +10,7 @@ class StaticCards extends StatelessWidget {
   final String measureIcon;
   final Color progressBarColor;
 
-  const StaticCards({super.key, required this.cardIcon, required this.text, required this.statusNumber, required this.measureIcon, required this.cardIconColor, required this.progressBarColor});
+  const StaticCards({super.key, required this.showProgress, required this.cardIcon, required this.cardIconColor, required this.text, required this.statusNumber, required this.measureIcon, required this.progressBarColor, });
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class StaticCards extends StatelessWidget {
                                        ]
                                      ),
 
-                                     Container(
+                                    showProgress ? Container(
                                           width: 120,
                                           height: 6,
                                           decoration: BoxDecoration(
@@ -96,7 +97,7 @@ class StaticCards extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                        )
+                                        ):SizedBox.shrink()
 
 
                                  ],
