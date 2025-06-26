@@ -10,7 +10,7 @@ class StaticCards extends StatelessWidget {
   final String measureIcon;
   final Color progressBarColor;
 
-  const StaticCards({super.key, required this.showProgress, required this.cardIcon, required this.cardIconColor, required this.text, required this.statusNumber, required this.measureIcon, required this.progressBarColor, });
+  const StaticCards({super.key, required this.showProgress, required this.cardIcon, required this.cardIconColor, required this.text, required this.statusNumber, required this.measureIcon, required this.progressBarColor,  });
 
   @override
   Widget build(BuildContext context) {
