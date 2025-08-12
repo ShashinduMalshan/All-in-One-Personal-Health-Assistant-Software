@@ -2,25 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-void main() {
-  runApp(MyApp());
-}
+import 'SingIn.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PulseCare',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SignUpScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -99,13 +86,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   children: [
                     Container(
-                      width: 80,
-                      height: 80,
+                      width: 100,
+                      height: 100,
                       child: CustomPaint(
-                        painter: MedicalCrossPainter(),
+                        // painter: MedicalCrossPainter(),
+                        child: Image.asset('assets/pulseCareImg.png')
+
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 10),
                     const Text(
                       'PulseCare',
                       style: TextStyle(
@@ -393,16 +382,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: () => print('Sign In pressed'),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SignInScreen()),
+                                      );
+                                    },
                                     child: const Text(
-                                      'Sign In',
+                                      'Sign Up',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xFF2196F3),
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ),
+                                  )
+
                                 ],
                               ),
                             ),

@@ -1,26 +1,15 @@
+import 'package:first_01/main.dart';
+import 'package:first_01/pages/NabPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-void main() {
-  runApp(MyApp());
-}
+import 'SingUp.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PulseCare',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SignInScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 
 class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
@@ -91,13 +80,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: [
                         // Logo
                         Container(
-                          width: 80,
-                          height: 80,
+                          width: 100,
+                          height: 100,
                           child: CustomPaint(
-                            painter: MedicalCrossPainter(),
+                            // painter: MedicalCrossPainter(),
+                           child: Image.asset('assets/pulseCareImg.png')
+
                           ),
                         ),
-                        const SizedBox(height: 16),
                         const Text(
                           'PulseCare',
                           style: TextStyle(
@@ -117,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ],
                     ),
 
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 35),
 
                     // Sign in form card
                     Container(
@@ -267,7 +257,13 @@ class _SignInScreenState extends State<SignInScreen> {
                                 width: double.infinity,
                                 height: 52,
                                 child: ElevatedButton(
-                                  onPressed: loginUser,
+                                  // onPressed: loginUser,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Nav()),
+                                    );
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF4ECDC4),
                                     foregroundColor: Colors.white,
@@ -379,7 +375,12 @@ class _SignInScreenState extends State<SignInScreen> {
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () => print('Sign Up pressed'),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => SignUpScreen()),
+                                        );
+                                      },
                                       child: const Text(
                                         'Sign Up',
                                         style: TextStyle(
@@ -388,7 +389,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                    ),
+                                    )
+
                                   ],
                                 ),
                               ),

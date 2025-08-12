@@ -5,17 +5,17 @@ import 'package:first_01/pages/MedicalHistoryStorage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const App());
+  runApp(const Nav());
 }
 
-class App extends StatefulWidget {
-  const App({super.key});
+class Nav extends StatefulWidget {
+  const Nav({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  State<Nav> createState() => _NavState();
 }
 
-class _AppState extends State<App> {
+class _NavState extends State<Nav> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
@@ -78,3 +78,4 @@ class _AppState extends State<App> {
     );
   }
 }
+//shhasidu malshan

@@ -1,24 +1,10 @@
+import 'package:first_01/pages/SingIn.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Healthcare App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: WelcomeScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,17 +19,19 @@ class WelcomeScreen extends StatelessWidget {
 
               // Medical Cross Icon
               Container(
-                width: 120,
-                height: 120,
+                width: 150,
+                height: 150,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: CustomPaint(
-                  painter: MedicalCrossPainter(),
+                  // painter: MedicalCrossPainter(),
+                  child: Image.asset('assets/pulseCareImg.png')
+
                 ),
               ),
 
-              const SizedBox(height: 80),
+              const SizedBox(height: 40),
 
               // Welcome Text
               const Text(
@@ -62,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                 'From checkups to reminders,\nyour personal healthcare companion\nis here.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.black54,
                   height: 1.5,
                 ),
@@ -76,8 +64,10 @@ class WelcomeScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle button press
-                    print('Get Started pressed');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4ECDC4),
@@ -96,6 +86,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
 
               const SizedBox(height: 60),
             ],
