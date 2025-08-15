@@ -1,9 +1,9 @@
-import 'package:first_01/main.dart';
-import 'package:first_01/pages/NabPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'NabPage.dart';
 import 'SingUp.dart';
 
 

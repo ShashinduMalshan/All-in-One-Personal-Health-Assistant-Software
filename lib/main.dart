@@ -1,8 +1,4 @@
-import 'package:first_01/pages/frontPage.dart';
-import 'package:first_01/pages/home_Page.dart';
-import 'package:first_01/pages/setting_Page.dart';
-import 'package:first_01/pages/PulseWellPage.dart';
-import 'package:first_01/pages/MedicalHistoryStorage.dart';
+import 'package:Pulse_Care/pages/frontPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {

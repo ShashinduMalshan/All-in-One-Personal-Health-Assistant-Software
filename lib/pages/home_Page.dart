@@ -1,5 +1,5 @@
+import 'package:Pulse_Care/widget/TestDart.dart';
 import 'package:flutter/material.dart';
-import 'Quick_Action_Pages/LogMealPage.dart';
 import 'Quick_Action_Pages/SchedulePage.dart';
 import 'Quick_Action_Pages/period page nav pages/PeriodTrackerScreen.dart';
 import 'Quick_Action_Pages/StartWorkOut.dart';
@@ -471,7 +471,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         Row(
           children: [
             Expanded(child: _buildActionCard("Log Meal", Icons.restaurant_menu, Colors.deepOrange, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const LogMealPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const /*LogMealPage*/ DietAndWorkoutPlanner()));
             })),
             const SizedBox(width: 16),
             Expanded(child: _buildActionCard("Start Workout", Icons.fitness_center, Colors.green, () {

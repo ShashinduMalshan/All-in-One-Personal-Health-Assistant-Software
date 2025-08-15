@@ -1,7 +1,8 @@
-import 'package:first_01/pages/Quick_Action_Pages/period%20page%20nav%20pages/InsightsPage.dart';
-import 'package:first_01/pages/Quick_Action_Pages/period%20page%20nav%20pages/MoodNotificationPage.dart';
-import 'package:first_01/pages/Quick_Action_Pages/period%20page%20nav%20pages/VideosPage.dart';
 import 'package:flutter/material.dart';
+
+import 'InsightsPage.dart';
+import 'MoodNotificationPage.dart';
+import 'VideosPage.dart';
 
 
 

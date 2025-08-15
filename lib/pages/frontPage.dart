@@ -1,5 +1,6 @@
-import 'package:first_01/pages/SingIn.dart';
 import 'package:flutter/material.dart';
+
+import 'SingIn.dart';
 
 
 class WelcomeScreen extends StatelessWidget {

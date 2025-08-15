@@ -2,8 +2,22 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const BmiAiPage());
+// void main() {
+//   runApp(const MyApp());
+// }
+
+class DietAndWorkoutPlanner extends StatelessWidget {
+  const DietAndWorkoutPlanner({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'AI Workout & Diet Planner',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const BmiAiPage(),
+    );
+  }
 }
 
 class BmiAiPage extends StatefulWidget {
@@ -31,17 +45,51 @@ class _BmiAiPageState extends State<BmiAiPage> {
     setState(() => loading = true);
 
     try {
-      final url = Uri.parse("https://api.example.com/generate-plan"); // Replace with your AI API
-      final apiKey = "YOUR_API_KEY";
+      final url = Uri.parse("https://openrouter.ai/api/v1/chat/completions");
+      final apiKey = "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"; // Replace with your real OpenRouter API key
 
       final body = jsonEncode({
-        "height_m": height,
-        "weight_kg": weight,
-        "goal": "maintain",
-        "preferences": {
-          "diet": "balanced",
-          "workout_type": "mixed"
-        }
+        "model": "openai/gpt-3.5-turbo",
+        "messages": [
+          {
+            "role": "system",
+            "content": """
+You are a professional fitness coach and nutritionist.
+Always respond in strict JSON format:
+{
+  "bmi": number,
+  "category": string,
+  "workout_plan": [
+    {
+      "day": "string",
+      "exercises": [
+        {"name": "string", "sets": number, "reps": "string", "notes": "string"}
+      ]
+    }
+  ],
+  "diet_plan": [
+    {
+      "day": "string",
+      "meals": [
+        {"meal": "Breakfast", "items": ["string", "string"]},
+        {"meal": "Lunch", "items": ["string", "string"]},
+        {"meal": "Dinner", "items": ["string", "string"]},
+        {"meal": "Snacks", "items": ["string", "string"]}
+      ]
+    }
+  ]
+}
+
+Make the workout plan cover 7 days, include rest days, target all muscle groups, and vary intensity.
+Make the diet plan cover 7 days with portion suggestions and healthy alternatives.
+"""
+          },
+          {
+            "role": "user",
+            "content":
+                "Height: $height m, Weight: $weight kg, Goal: maintain. Generate BMI, category, and a 7-day workout & diet plan."
+          }
+        ]
       });
 
       final response = await http.post(
@@ -56,20 +104,44 @@ class _BmiAiPageState extends State<BmiAiPage> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
 
+        // Extract AI's JSON response
+        final content = data["choices"][0]["message"]["content"];
+        final parsed = jsonDecode(content);
+
+        String workoutText = "";
+        for (var dayPlan in parsed['workout_plan']) {
+          workoutText += "Day: ${dayPlan['day']}\n";
+          for (var ex in dayPlan['exercises']) {
+            workoutText +=
+                "- ${ex['name']}, Sets: ${ex['sets']}, Reps: ${ex['reps']}, Notes: ${ex['notes']}\n";
+          }
+          workoutText += "\n";
+        }
+
+        String dietText = "";
+        for (var dayPlan in parsed['diet_plan']) {
+          dietText += "Day: ${dayPlan['day']}\n";
+          for (var meal in dayPlan['meals']) {
+            dietText += "${meal['meal']}: ${meal['items'].join(", ")}\n";
+          }
+          dietText += "\n";
+        }
+
         setState(() {
           result = """
-BMI: ${data['bmi']}
-Category: ${data['category']}
+BMI: ${parsed['bmi']}
+Category: ${parsed['category']}
 
 Workout Plan:
-${(data['workout_plan'] as List).join("\n")}
+$workoutText
 
 Diet Plan:
-${(data['diet_plan'] as List).join("\n")}
+$dietText
 """;
         });
       } else {
-        setState(() => result = "Error: ${response.statusCode} - ${response.body}");
+        setState(() => result =
+            "Error: ${response.statusCode} - ${response.body}");
       }
     } catch (e) {
       setState(() => result = "Error: $e");
