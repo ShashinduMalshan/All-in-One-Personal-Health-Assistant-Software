@@ -27,6 +27,10 @@ dependencies:
     http: ^1.2.0
     cupertino_icons: ^1.0.8
     fl_chart: ^0.68.0
+    open_file: ^3.3.2
+    permission_handler: ^11.3.1
+    pdf: ^3.10.8
+    path_provider: ^2.1.5
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -72,6 +76,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/pulseCareImg.png
+    - assets/fonts/Roboto-Regular.ttf
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
 
 
   # To add assets to your application, add an assets section, like this:
